@@ -1,0 +1,33 @@
+{%extends 'home.html'%}
+{%block body_block%}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-3"></div>
+        <div class="col-5">
+            <table class="table table-bordered table-striped table-hover">
+            <br>
+            <tr>
+                <th colspan="3"><h3><strong><center>ITEM CATEGORY LIST</center></strong></h3></th>
+            </tr>
+            {% for item in items%}
+            <tr>
+                <td>{{item.product_category}}</td>
+
+                <td><a href="{%url 'updatecategory' item.id%}" class="btn btn-primary">Edit</a></td>
+                <td><a href="{%url 'removecategory' item.id%}" class="btn btn-danger">Delete</a></td>
+            </tr>
+            {%endfor%}
+        </table>
+</div>
+        <div class="col-4"></div>
+
+
+    </div>
+
+
+</div>
+
+
+{%endblock%}

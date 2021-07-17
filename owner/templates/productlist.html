@@ -1,0 +1,44 @@
+{%extends 'home.html'%}
+{%block body_block%}
+<div class="container-fluid">
+    <div class=" col-sm-2 col-md-12">
+<table class="table table-bordered table table-striped table-hover">
+    <br>
+    <tr>
+        <th colspan="8">
+            <h3><strong>
+                <center>PRODUCTS LIST</center>
+            </strong></h3>
+        </th>
+    </tr>
+    <tr class="table-info">
+        <th>Product Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Specifications</th>
+        <th>Image</th>
+        <th colspan="3">Action</th>
+    </tr>
+    {%for product in products%}
+    <tr>
+        <td>{{product.product_name}}</td>
+        <td>{{product.category.product_category}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.specs}}</td>
+        <td><img src="{{product.image.url}}" alt="" height="120px"></td>
+        <!--<td>-->
+            <!--<a href=""  class="btn btn-primary">View</a>-->
+        <!--</td>-->
+        <td>
+            <a href="{%url 'updateproduct' product.id%}"class="btn btn-warning">Edit</a>
+        </td>
+        <td>
+            <a href="{%url 'removeproduct' product.id%}" class="btn btn-danger">Delete</a>
+
+        </td>
+    </tr>
+    {%endfor%}
+</table>
+        </div>
+    </div>
+{%endblock%}

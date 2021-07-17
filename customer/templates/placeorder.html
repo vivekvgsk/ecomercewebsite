@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{%extends 'index.html'%}
+{%block body_block%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+           <h3>Enter Your Deliver Address</h3>
+            <form method="POST">
+            {%csrf_token%}
+            {{form.as_p}}
+            <input type="submit" value="OREDR NOW" class="btn btn-warning ">
+        </form>
+        </div>
+       <div class="col-4">hai</div>
+        </div>
+
+
+
+    </div>
+</div>
+
+{% endblock %}

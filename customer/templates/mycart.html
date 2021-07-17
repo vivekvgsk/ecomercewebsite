@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{%extends 'index.html'%}
+{%block body_block%}
+<div class="container">
+    <div class="row">
+
+        <div class="col-8">
+
+            {%for cart_item in cart_items%}
+            <div class="card mb-2 bg-light" style="max-width:800px;margin-top:10px;height:250px;">
+                <div class="row g-0">
+                    <div class="col-md-5">
+                        <img src="{{cart_item.product.image.url}}" alt="..." style="height:150px;width:100px">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h2 class="card-title" style="color:blue"><strong>
+                                {{cart_item.product.product_name}}
+                            </strong></h2>
+                            <h5 class="card-text">{{cart_item.status}}</h5><br>
+                            <h6 class="card-text" style="color:#a83248"><strong>Price:
+                                ₹{{cart_item.product.price}}</strong>
+                            </h6>
+                            <br><br>
+                            <table>
+                                <tr>
+                                    <td style="width:200px">
+                                        <a href="{%url 'order' cart_item.product.id cart_item.id%}"
+                                           class="btn btn-warning"
+                                           style="color:white;font-weight:bold">ORDER </a>
+                                    </td>
+                                    <td style="width:200px">
+                                        <a href="" class="btn btn-danger"
+                                           style="color:white;font-weight:bold">REMOVE</a>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                {%endfor%}
+            </div>
+
+
+    <div class="col-2">
+        <div class="card" style="width: 18rem;margin-top:10px">
+            <ul class="list-group list-group-flush ">
+                <li class="list-group-item bg-info"><strong>PRICE DETAILS</strong></li>
+                <li class="list-group-item">No of Items: {%if cnt%}
+                    {{cnt}}{%endif%}
+                </li>
+
+
+            </ul>
+            <div class="card-footer">
+                Total Amount: ₹ {{total}}
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+{% endblock %}
+

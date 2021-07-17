@@ -1,0 +1,28 @@
+
+
+{%extends 'index.html'%}
+{%block body_block%}
+<div class="container">
+    <div class="row">
+        {%for product in products%}
+<!--<div class="col mb-5">-->
+        <div class="col-4">
+            <div class="card bg-light" style="width: 18rem;margin-top:50px;">
+                <a href="{%url 'productdetail' product.id%}"> <img src="{{product.image.url}}" class="card-img-top" alt="..." style="height:300px;width:250px"></a>
+                <div class="card-body">
+                    <h5 class="card-title text-primary"><strong>
+                        <a href="{%url 'productdetail' product.id%}" style="text-decoration:none"><center>{{product.product_name}}</center></a></strong></h5>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+        {%endfor%}
+    </div>
+</div>
+
+{% endblock %}
+

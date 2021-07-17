@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+{%extends 'index.html'%}
+{%block body_block%}
+<div class="container">
+    <div class="row">
+
+
+        <div class="card mb-3 bg-light" style="max-width:1000px;margin-top:10px">
+            <div class="row g-0">
+                <div class="col-md-5">
+                    <img src="{{product.image.url}}" alt="..." style="height:400px;width:250px">
+                </div>
+                <div class="col-md-4">
+                    <div class="card-body">
+                        <h2 class="card-title" style="color:blue"><strong>
+                             {{product.product_name}}
+                        </strong></h2>
+                        <h5 class="card-text">{{product.specs}}</h5><br>
+                        <h6 class="card-text" style="color:#a83248"><strong>Price: ₹ {{product.price}}</strong></h6>
+                        <br><br>
+                        <table>
+                            <tr >
+                                <td style="width:200px">
+                                    <a href="{%url 'addtocart' product.id%}" class="btn btn-warning "
+                                       style="color:white;font-weight:bold;text-align:center">ADD TO KART</a>
+                                </td>
+                                <td style="width:200px">
+                                    <a href="{%url 'home'%}" class="btn btn-danger " style="color:white;text-align:center;font-weight:bold">Go BACK
+                                        </a>
+                                </td>
+                                <td></td>
+                                <td></td>
+
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!
+
+    </div>
+</div>
+
+
+</div>
+</div>
+
+{% endblock %}
+
