@@ -31,6 +31,7 @@ class Orders(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.CharField(max_length=120)
     address = models.CharField(max_length=250)
+
     options = (
         ("ordered", "ordered"),
         ("packed", "packed"),

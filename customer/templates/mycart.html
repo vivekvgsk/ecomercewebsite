@@ -14,23 +14,23 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card-body">
-                            <h2 class="card-title" style="color:blue"><strong>
+                            <h3 class="card-title" style="color:blue"><strong>
                                 {{cart_item.product.product_name}}
-                            </strong></h2>
+                            </strong></h3>
                             <h5 class="card-text">{{cart_item.status}}</h5><br>
                             <h6 class="card-text" style="color:#a83248"><strong>Price:
                                 ₹{{cart_item.product.price}}</strong>
                             </h6>
-                            <br><br>
+
                             <table>
                                 <tr>
                                     <td style="width:200px">
-                                        <a href="{%url 'order' cart_item.product.id cart_item.id%}"
+                                        <a href="{%url 'order' cart_item.id cart_item.product.id%}"
                                            class="btn btn-warning"
                                            style="color:white;font-weight:bold">ORDER </a>
                                     </td>
                                     <td style="width:200px">
-                                        <a href="" class="btn btn-danger"
+                                        <a href="{%url 'removecart' cart_item.id%}" class="btn btn-danger"
                                            style="color:white;font-weight:bold">REMOVE</a>
                                     </td>
                                     <td></td>
