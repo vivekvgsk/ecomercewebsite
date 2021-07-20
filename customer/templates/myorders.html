@@ -6,15 +6,16 @@
     <div class="row">
         {%for order_item in order_items%}
 
-        <div class="col-4" style="margin-top:20px">
-            <div class="card " style="width: 18rem;">
+        <div class="col-4" style="margin-top:5px">
+            <div class="card " style="width: 18rem;height:500px">
                 <img src="{{order_item.product.image.url}}" class="card-img-top" alt="..." style="height:300px;width:250px">
                 <div class="card-body">
                     <h5 class="card-title text-primary"><strong>
-                        <center>{{order_item.product.mobile_name}}</center></strong></h5>
+                        <center>{{order_item.product.product_name}}</center></strong></h5>
                     <h5 class="card-title" style="color:#a83248"><strong>Price: ₹{{order_item.product.price}}</strong></h5>
                     <h5 class="card-title">{{order_item.status}}</h5>
-                    <h5 class="card-title">{{order_item.user}}</h5>
+                    <h5 class="card-title">Orderd On:{{order_item.date}}</h5>
+                    <h5>{{order_item.user}}</h5>
 
                     <a href="{%url 'ordercancel' order_item.id%}" class="btn btn-warning" style="color:white;font-weight:bold">CANCEL</a>
                     <a href="" class="btn btn-danger" style="color:white;font-weight:bold">STATUS</a>

@@ -1,0 +1,47 @@
+{%extends 'home.html'%}
+{%block body_block%}
+
+<div class="container-fluid">
+    <div class=" col-sm-2 col-md-12">
+<table class="table table-bordered table table-striped table-hover">
+    <br>
+    <tr>
+        <th colspan="10">
+            <h3><strong>
+                <center>ORDER HISTORY</center>
+            </strong></h3>
+        </th>
+    </tr>
+    <tr class="table-info">
+        <th>Customer Name</th>
+         <th>Customer Address</th>
+        <th> Product Category </th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Specifications</th>
+        <th>Image</th>
+         <th>Orderd Date</th>
+        <th>Status</th>
+
+    </tr>
+    {%for order in orders%}
+    <tr>
+        <td>{{order.user}}</td>
+        <td>{{order.address}}</td>
+
+        <td>{{order.product.category.product_category}}</td>
+        <td>{{order.product.product_name}}</td>
+        <td>{{order.product.price}}</td>
+        <td>{{order.product.specs}}</td>
+        <td><img src="{{order.product.image.url}}" alt="" height="120px"></td>
+        <td>{{order.date}}</td>
+        <td>{{order.status}}
+        <a href="{%url 'status' order.id%}"  class="btn btn-warning">Update</a>
+        </td>
+
+    </tr>
+    {%endfor%}
+</table>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,46 @@
+{%extends 'index.html'%}
+{%block body_block%}
+<div class="card" style="width:450px">
+    <h5 class="card-header" style="background-color:#229af0;color:white;font-weight:bold;"><center>Search Here</center></h5>
+  <div class="card-body">
+    <!--<form action="" method="get">-->
+
+        <table>
+         <center>  <input type="text" name="search" placeholder="Enter Keyword to search....." >&nbsp;&nbsp;<i class="fas fa-search"></i><input type="submit" value="Search" class="btn btn-success"></center>
+            <!--{{filter.form.as_table}}-->
+        </table>
+
+
+
+</form>
+</div>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div>
+            <div class="card">
+                <h5 class="card-header" style="background-color:#229af0;color:white;font-weight:bold">Search Result</h5>
+                <div class="card-body">
+                    <table class="table table-striped ">
+                        <tr class="bg-warning">
+                            <td>Product Name</td>
+
+                        </tr>
+                        {%for product in filter.qs%}
+                        <tr>
+                            <td>{{product.product_name}}</td>
+                            <td>{{product.price}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><a href="" class="btn btn-primary"></a></td>
+                        </tr>
+                        {%endfor%}
+                    </table>
+                </div>
+            </div>
+        </div>
+ </div>
+        </div>
+{%endblock%}

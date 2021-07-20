@@ -1,5 +1,5 @@
 from django import forms
-from .models import Item,Product
+from .models import Item,Product,Orders
 
 class ItemCreateForm(forms.ModelForm):
     class Meta:
@@ -21,5 +21,11 @@ class ProductCreateForm(forms.ModelForm):
         if price<10:
             msg="invalid price"
             self.add_error("price",msg)
+
+class StatusUpdateForm(forms.ModelForm):
+    class Meta:
+        model=Orders
+        fields=["product","status"]
+
 
 

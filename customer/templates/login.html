@@ -1,26 +1,71 @@
-{%extends 'index.html'%}
+{%extends 'sample.html'%}
 {%block body_block%}
-{%if messages%}
+
+<div class="container">
+
+    <div class="row" style="height:400px">
+        <div class="col-6" style="background-image:url(/static/images/p.jpg)"><br><br><br>
+            <h1 style="color:white;font-weight:bold;text-align:center">Login</h1>
+            <h4 style="color:white;font-weight:bold;text-align:center">Get access to your <br>
+                Orders, Wishlist and <br>
+                Recommendations</h4>
+        </div>
+        <div class="col-6" style=" background-image:url(/static/images/light.jpg)">
+            <br><br><br><br>
+            {%if messages%}
             {%for message in messages%}
             <div style="color:red">
                 {{message}}
             </div>
             {%endfor%}
             {%endif%}
+            <form action="" method="POST">
+                {%csrf_token%}
+                <h2 style="color:blue"><center><strong>Sign in to Account</strong></center></h2>
+                 <table class="table-primary" style="width:400px;margin-left:80px;">
+                    <tr >
+                        <td>{{form.as_table}}</td>
+                    </tr>
+                    <tr>
 
-<div class="card" style="width:400px">
-    <h5 class="card-header" style="background-color:#229af0;color:white;font-weight:bold;"><center> Login</center></h5>
-  <div class="card-body">
-    <form action="" method="post">
-    {%csrf_token%}
-        <table>
-            {{form.as_table}}
-        </table>
+                        <td></td>
 
-    <input type="submit" value="Login" class="btn btn-primary" style="margin-left:100px;width:150px">
+                        <td> <input type="submit" Value="Login" class="btn btn-primary" style="width:200px;margin-left:50px;margin-top:20px"></td>
+                    </tr>
+                </table>
+                <br><br>
+                <h6><a href="{%url 'signup'%}" class="btn btn-light" style="font-weight:bolder;margin-left:190px;">New to E-Zone? Create an account  </a></h6>
+                </form>
+        </div>
 
-</form>
+    </div>
 </div>
-</div>
+
+
+
+
+
+<!--{%if messages%}-->
+            <!--{%for message in messages%}-->
+            <!--<div style="color:red">-->
+                <!--{{message}}-->
+            <!--</div>-->
+            <!--{%endfor%}-->
+            <!--{%endif%}-->
+
+<!--<div class="card" style="width:400px">-->
+    <!--<h5 class="card-header" style="background-color:#229af0;color:white;font-weight:bold;"><center> Login</center></h5>-->
+  <!--<div class="card-body">-->
+    <!--<form action="" method="post">-->
+    <!--{%csrf_token%}-->
+        <!--<table>-->
+            <!--{{form.as_table}}-->
+        <!--</table>-->
+
+    <!--<input type="submit" value="Login" class="btn btn-primary" style="margin-left:100px;width:150px">-->
+
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
 
 {% endblock%}

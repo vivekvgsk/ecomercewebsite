@@ -20,30 +20,39 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-info">
             <div class="container px-4 px-lg-5">
+
                 <a class="navbar-brand" href="#!">E-Zon</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item" ><a class="nav-link active" style="color:white;font-weight:bold" aria-current="page" href="{%url 'home'%}">List Products</a></li>
                         <li class="nav-item"><a class="nav-link active" style="color:white;font-weight:bold" href="{%url 'myorders'%}">My Orders</a></li>
-                        <li class="nav-item"><a class="nav-link active" style="color:white;font-weight:bold" href="">Add Products</a></li>
-                        <li class="nav-item"><a class="nav-link active" style="color:white;font-weight:bold" href="">List Products</a></li>
+                        <li class="nav-item"><a class="nav-link active" style="color:white;font-weight:bold" href="{%url 'cancelledorders'%}">Cancelled Orders</a></li>
+                        <li class="nav-item"><a class="nav-link active" style="color:white;font-weight:bold" href="{%url 'search'%}">List Products</a></li>
+
                         <li class="nav-item dropdown">
+                            <form action=""  method="get">
+
                             <a class="nav-link dropdown-toggle" style="color:white;font-weight:bold" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">All Products</a></li>
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" name="listitems">
+                                <li><a class="dropdown-item" href="{%url 'home'%}">All Products</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                                <li><a class="dropdown-item" href="#!">Laptop</a></li>
+                                <li><a class="dropdown-item" href="{%url 'listproducts'%}">GAMING PC</a></li>
+                                <li><a class="dropdown-item" href="#!">CPU</a></li>
+                                <li><a class="dropdown-item" href="#!">Graphic Cards</a></li>
                             </ul>
+
+                            </form>
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <a href="{%url 'cart'%}" class="btn btn-outline-dark" type="submit">
+                        <a href="{%url 'cart'%}" class="btn btn-outline-warning" type="submit">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
                             <span class="badge bg-dark text-white ms-1 rounded-pill">{%if cnt%}
-            ( {{cnt}} ){%endif%}</span>
+             {{cnt}} {%endif%}</span>
                         </a>
                     </form>
                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -54,18 +63,43 @@
 
                         </a>
                     </form>
+                         &nbsp;<h5>Hello,{{request.user}}</h5>
                 </div>
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-                </div>
-            </div>
-        </header>
+        <div class="container-fluid" style="background-image:url(/static/images/cc.jpg)">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/static/images/HP1.jpg" class="d-block w-100" alt="..." style="height:350px">
+    </div>
+    <div class="carousel-item">
+      <img src="/static/images/len.jpg" class="d-block w-100" alt="..." style="height:350px;width:1200px">
+    </div>
+    <div class="carousel-item">
+      <img src="/static/images/hp2.jpg" class="d-block w-100" alt="..." style="height:350px;width:1200px">
+    </div>
+       <div class="carousel-item">
+      <img src="/static/images/HP1.jpg" class="d-block w-100" alt="..." style="height:350px;width:1200px">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+    </div>
+         <!--<form class="d-flex" method="get">-->
+        <!--<input class="form-control me-2" type="Search" name="search" placeholder="Enter Keyword to search" aria-label="Search1" value="HP Pavilion Gaming Laptop">-->
+        <!--<a href="{%url 'search'%}" class="btn btn-outline-success" type="submit">Search</a>-->
+      <!--</form>-->
+
+
         <!-- Section-->
         <section class="py-5">
             <!--<div class="container px-4 px-lg-5 mt-5">-->
@@ -87,7 +121,7 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
+        <footer class="py-5 bg-info">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
         </footer>
         <!-- Bootstrap core JS-->

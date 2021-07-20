@@ -8,6 +8,11 @@ from django.contrib import messages
 from owner.models import Product,Cart,Orders
 from django.db.models import Sum
 from django.core.mail import send_mail
+from django.db.models import Q
+from .filters import ProductFilter
+from django.utils.decorators import method_decorator
+from .decorators import loginrequired
+
 from django.conf import settings
 
 # Create your views here.
@@ -46,7 +51,7 @@ class SignoutView(TemplateView):
         logout(request)
         return redirect("signin")
 
-
+@method_decorator(loginrequired,name="dispatch")
 class CustomerHome(TemplateView):
     context = {}
     template_name = "userhome.html"
@@ -61,6 +66,7 @@ class CustomerHome(TemplateView):
 
         return render(request,self.template_name,self.context)
 
+@method_decorator(loginrequired,name="dispatch")
 class ProductDetail(DetailView):
     model=Product
     template_name="productdetail.html"
@@ -69,6 +75,7 @@ class ProductDetail(DetailView):
 def get_object(id):
     return Product.objects.get(id=id)
 
+@loginrequired
 def add_to_cart(request,*args,**kwargs):
     pid = kwargs.get("id")
     product = get_object(pid)
@@ -76,12 +83,13 @@ def add_to_cart(request,*args,**kwargs):
     cart.save()
     return redirect("cart")
 
+@method_decorator(loginrequired,name="dispatch")
 class RemoveCartView(DeleteView):
     model=Cart
     template_name = "removecart.html"
     success_url=reverse_lazy("cart")
 
-
+@method_decorator(loginrequired,name="dispatch")
 class MyCart(TemplateView):
     model=Cart
     template_name = "mycart.html"
@@ -137,12 +145,14 @@ class MyCart(TemplateView):
 #             return redirect("myorders")
 #         return render(request, self.template_name, self.context)
 
+@method_decorator(loginrequired,name="dispatch")
 class MyOrders(TemplateView):
     model=Orders
     template_name = "myorders.html"
     context={}
     def get(self,request,*args,**kwargs):
-        order_items=self.model.objects.filter(user=request.user)
+
+        order_items=self.model.objects.filter(Q(user=request.user) & Q(status="ordered") | Q(status="packed") | Q(status="shipped"))
         cnt = Cart.objects.filter(user=request.user, status="Ordernotplaced").count()
         self.context={
             "order_items":order_items,
@@ -150,6 +160,7 @@ class MyOrders(TemplateView):
         }
         return render(request, self.template_name, self.context)
 
+@loginrequired
 def cancel_order(request,*args,**kwargs):
     pid=kwargs.get("id")
     product=Orders.objects.get(id=pid)
@@ -158,7 +169,7 @@ def cancel_order(request,*args,**kwargs):
     product.save()
     return redirect("myorders")
 
-
+@method_decorator(loginrequired,name="dispatch")
 class PlaceOrder(TemplateView):
     model=Cart
     template_name = "placeorder.html"
@@ -199,6 +210,63 @@ class PlaceOrder(TemplateView):
             )
             return redirect("myorders")
         return render(request, self.template_name, self.context)
+
+class Products(TemplateView):
+    context = {}
+    template_name = "products.html"
+    def get(self,request,*args,**kwargs):
+
+        products=Product.objects.all()
+        self.context={
+            "products":products
+
+        }
+        # self.context["products"]=products
+
+        return render(request,self.template_name,self.context)
+
+@method_decorator(loginrequired,name="dispatch")
+class CancelledOrders(TemplateView):
+    model=Orders
+    template_name = "cancelledorders.html"
+    context={}
+    def get(self,request,*args,**kwargs):
+        cancelled_items=self.model.objects.filter(user=request.user,status="cancelled")
+        cnt = Cart.objects.filter(user=request.user, status="Ordernotplaced").count()
+        self.context={
+            "cancelled_items":cancelled_items,
+            "cnt":cnt
+        }
+        return render(request, self.template_name, self.context)
+
+class ProductSearchView(TemplateView):
+    def get(self,request,*args,**kwargs):
+
+        search=request.GET.get('search')
+        print(search)
+
+        product=Product.objects.filter((Q(product_name__icontains=search) | Q(price__icontains=search)))
+        product_filter=ProductFilter(request.GET,queryset=product)
+        return render(request,"searchresult.html",{"filter":product_filter})
+
+
+
+class ProductFilterView(TemplateView):
+    model=Product
+    template_name = "filterproducts.html"
+    context={}
+    def get(self,request,*args,**kwargs):
+        list_items=request.GET.get("listitems")
+        print(list_items)
+        products=Product.objects.filter(category=list_items)
+        print(products)
+        self.context["products"]=products
+        print(products)
+        return render(request, self.template_name, self.context)
+
+
+
+
 
 
 

@@ -4,20 +4,20 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-8">
+        <div class="col-10">
 
             {%for cart_item in cart_items%}
-            <div class="card mb-2 bg-light" style="max-width:800px;margin-top:10px;height:250px;">
+            <div class="card mb-2 bg-light" style="max-width:1000px;margin-top:10px;height:250px;">
                 <div class="row g-0">
                     <div class="col-md-5">
                         <img src="{{cart_item.product.image.url}}" alt="..." style="height:150px;width:100px">
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="card-body">
                             <h3 class="card-title" style="color:blue"><strong>
                                 {{cart_item.product.product_name}}
                             </strong></h3>
-                            <h5 class="card-text">{{cart_item.status}}</h5><br>
+                            <h6 class="card-text">{{cart_item.product.specs}}</h6><br>
                             <h6 class="card-text" style="color:#a83248"><strong>Price:
                                 ₹{{cart_item.product.price}}</strong>
                             </h6>
