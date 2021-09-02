@@ -1,16 +1,17 @@
-{%extends 'sample.html'%}
+{%extends 'blank.html'%}
 {%block body_block%}
 
 <div class="container">
 
-    <div class="row" style="height:400px">
-        <div class="col-6" style="background-image:url(/static/images/p.jpg)"><br><br><br>
-            <h1 style="color:white;font-weight:bold;text-align:center">Login</h1>
-            <h4 style="color:white;font-weight:bold;text-align:center">Get access to your <br>
-                Orders, Wishlist and <br>
-                Recommendations</h4>
-        </div>
-        <div class="col-6" style=" background-image:url(/static/images/light.jpg)">
+    <!--<div class="row" style="height:400px">-->
+        <!--<div class="col-6" style="background-image:url(/static/images/p.jpg)"><br><br><br>-->
+            <!--<h1 style="color:white;font-weight:bold;text-align:center">Login</h1>-->
+            <!--<h4 style="color:white;font-weight:bold;text-align:center">Get access to your <br>-->
+                <!--Orders, Wishlist and <br>-->
+                <!--Recommendations</h4>-->
+        <!--</div>-->
+        <div class="col rounded float-start" style=" background-image:url(/static/images/teal.jpg);width:500px;margin-left:250px; border-radius: 10%;">
+             <img src="/static/img/logo.png" alt=""  style="margin-left:160px">
             <br><br><br><br>
             {%if messages%}
             {%for message in messages%}
@@ -20,9 +21,11 @@
             {%endfor%}
             {%endif%}
             <form action="" method="POST">
+
                 {%csrf_token%}
-                <h2 style="color:blue"><center><strong>Sign in to Account</strong></center></h2>
-                 <table class="table-primary" style="width:400px;margin-left:80px;">
+                <img src="/static/images/headd.png" style="height:60px;margin-left:220px">
+                <h2 style="color:yellow"><center><strong>LOGIN</strong></center></h2>
+                 <table class="table-primary  " style="width:300px;margin-left:80px;margin-bottom:80px">
                     <tr >
                         <td>{{form.as_table}}</td>
                     </tr>
@@ -30,11 +33,18 @@
 
                         <td></td>
 
-                        <td> <input type="submit" Value="Login" class="btn btn-primary" style="width:200px;margin-left:50px;margin-top:20px"></td>
+                        <td> <input type="submit" Value="Login" class="btn " style="width:150px;margin-left:20px;margin-top:20px;background-color:red;color:white"></td>
                     </tr>
+                     <tr>
+                         <td>
+
+                <!--<h6><a href="{%url 'signup'%}" class="btn btn-info" style="font-weight:bolder;margin-left:120px;">New Customer? Create an account  </a></h6>-->
+                         </td>
+                     </tr>
                 </table>
+
+                <h6><a href="{%url 'signup'%}" class="btn btn-info" style="font-weight:bolder;margin-left:120px;">New Customer? Create an account  </a></h6>
                 <br><br>
-                <h6><a href="{%url 'signup'%}" class="btn btn-light" style="font-weight:bolder;margin-left:190px;">New to E-Zone? Create an account  </a></h6>
                 </form>
         </div>
 

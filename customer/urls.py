@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import CustomerRegistrationView,SignInView,CustomerHome,ProductDetail,add_to_cart,MyCart,PlaceOrder,MyOrders,cancel_order,RemoveCartView,SignoutView,Products,CancelledOrders,ProductSearchView,ProductFilterView
+from .views import CustomerRegistrationView,SignInView,CustomerHome,ProductDetail,add_to_cart,MyCart,PlaceOrder,MyOrders,cancel_order,RemoveCartView,SignoutView,Products,CancelledOrders,ProductSearchView,LaptopFilterView,GamingpcFilterView,CpuCabinetFilterView,GraphicCardFilterView
 from django.views.generic import TemplateView
 
 urlpatterns = [
     path("signup",CustomerRegistrationView.as_view(),name="signup"),
-    # path("log",TemplateView.as_view(template_name="sample.html"),name="login"),
+     path("test",TemplateView.as_view(template_name="indexx.html"),name="test"),
     path("signin",SignInView.as_view(),name="signin"),
     path("signout",SignoutView.as_view(),name="signout"),
     path("home",CustomerHome.as_view(),name="home"),
@@ -18,6 +18,9 @@ urlpatterns = [
     path("products",Products.as_view(),name="product"),
     path("cancelledorders",CancelledOrders.as_view(),name="cancelledorders"),
     path("search",ProductSearchView.as_view(),name="search"),
-    path("listproducts",ProductFilterView.as_view(),name="listproducts")
+    path("listproducts",LaptopFilterView.as_view(),name="listproducts"),
+    path("gaminspcs",GamingpcFilterView.as_view(),name="gaminspcs"),
+    path("cpucabinets",CpuCabinetFilterView.as_view(),name="cpucabinets"),
+    path("graphiccards",GraphicCardFilterView.as_view(),name="graphiccards")
 
     ]

@@ -1,31 +1,34 @@
 <!DOCTYPE html>
-{%extends 'index.html'%}
+{%extends 'indexx.html'%}
 {%block body_block%}
+<h1 style="color:red;font-weight:bold"><center>YOUR ORDERS</center></h1>
 <div class="container">
-
     <div class="row">
-        {%for order_item in order_items%}
 
-        <div class="col-4" style="margin-top:5px">
-            <div class="card " style="width: 18rem;height:500px">
-                <img src="{{order_item.product.image.url}}" class="card-img-top" alt="..." style="height:300px;width:250px">
-                <div class="card-body">
-                    <h5 class="card-title text-primary"><strong>
-                        <center>{{order_item.product.product_name}}</center></strong></h5>
-                    <h5 class="card-title" style="color:#a83248"><strong>Price: ₹{{order_item.product.price}}</strong></h5>
-                    <h5 class="card-title">{{order_item.status}}</h5>
-                    <h5 class="card-title">Orderd On:{{order_item.date}}</h5>
-                    <h5>{{order_item.user}}</h5>
-
-                    <a href="{%url 'ordercancel' order_item.id%}" class="btn btn-warning" style="color:white;font-weight:bold">CANCEL</a>
-                    <a href="" class="btn btn-danger" style="color:white;font-weight:bold">STATUS</a>
-                </div>
-            </div>
-        </div>
-
-
-        {%endfor%}
     </div>
+{%for order_item in order_items%}
+<div class="card mb- bg-info" style="max-width:1000px;margin-top:10px;height:180px;">
+  <div class="row g-0">
+    <div class="col-md-3">
+      <img src="{{order_item.product.image.url}}" class="img-fluid rounded-start" alt="..." style="height:100px;width:150px;margin-top:25px;margin-left:20px">
+    </div>
+      <br>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{order_item.product.product_name}}</h5>
+        <p class="card-text">{{order_item.product.specs}}</p>
+          <p class="card-text" style="color:#a83248"><strong>Price: ₹{{order_item.product.price}}</p>
+          <p class="card-text"><small class="text-muted">Orderd On:{{order_item.date}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       {{order_item.status}}</small>
+              <a href="{%url 'ordercancel' order_item.id%}" class="btn btn-danger" style="color:white;font-weight:bold">CANCEL</a></p>
+      </div>
+    </div>
+  </div>
 </div>
+    <br>
+
+{%endfor%}
+
+
 
 {% endblock %}

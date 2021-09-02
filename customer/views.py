@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from owner.models import Product,Cart,Orders
+from owner.models import Product,Cart,Orders,Item
 from django.db.models import Sum
 from django.core.mail import send_mail
 from django.db.models import Q
@@ -96,13 +96,15 @@ class MyCart(TemplateView):
     context={}
     def get(self,request,*args,**kwargs):
         cart_items=self.model.objects.filter(user=request.user,status="Ordernotplaced")
+        products = Product.objects.all()
         total = Cart.objects.filter(status='Ordernotplaced', user=request.user).aggregate(Sum('product__price'))
         cnt = Cart.objects.filter(user=request.user, status="Ordernotplaced").count()
 
         self.context={
             "cart_items":cart_items,
             "total":total.get("product__price__sum"),
-            "cnt":cnt
+            "cnt":cnt,
+            "products":products
         }
         return render(request, self.template_name, self.context)
 
@@ -251,17 +253,77 @@ class ProductSearchView(TemplateView):
 
 
 
-class ProductFilterView(TemplateView):
+class LaptopFilterView(TemplateView):
     model=Product
     template_name = "filterproducts.html"
     context={}
     def get(self,request,*args,**kwargs):
-        list_items=request.GET.get("listitems")
-        print(list_items)
-        products=Product.objects.filter(category=list_items)
-        print(products)
-        self.context["products"]=products
-        print(products)
+        # list_items=request.GET.get("listitems")
+        # print(list_items)
+        laptops=self.model.objects.filter(category__product_category="LAPTOP")
+        cnt = Cart.objects.filter(user=request.user, status="Ordernotplaced").count()
+
+
+        self.context={
+            "laptops":laptops,
+            "cnt":cnt
+
+        }
+
+        return render(request, self.template_name, self.context)
+
+class GamingpcFilterView(TemplateView):
+    model=Product
+    template_name = "filterproducts.html"
+    context={}
+    def get(self,request,*args,**kwargs):
+        # list_items=request.GET.get("listitems")
+        # print(list_items)
+
+        gpcs = self.model.objects.filter(category__product_category="GAMING PC")
+        cnt = Cart.objects.filter(user=request.user, status="Ordernotplaced").count()
+        self.context={
+
+            "gpcs":gpcs,
+            "cnt":cnt
+        }
+
+        return render(request, self.template_name, self.context)
+
+class CpuCabinetFilterView(TemplateView):
+    model=Product
+    template_name = "filterproducts.html"
+    context={}
+    def get(self,request,*args,**kwargs):
+        # list_items=request.GET.get("listitems")
+        # print(list_items)
+
+        cpus = self.model.objects.filter(category__product_category="CPU CABINET")
+        cnt = Cart.objects.filter(user=request.user, status="Ordernotplaced").count()
+        self.context={
+
+            "cpus":cpus,
+            "cnt":cnt
+        }
+
+        return render(request, self.template_name, self.context)
+
+class GraphicCardFilterView(TemplateView):
+    model=Product
+    template_name = "filterproducts.html"
+    context={}
+    def get(self,request,*args,**kwargs):
+        # list_items=request.GET.get("listitems")
+        # print(list_items)
+
+        gcs = self.model.objects.filter(category__product_category="GRAPHIC CARD")
+        cnt = Cart.objects.filter(user=request.user, status="Ordernotplaced").count()
+        self.context={
+
+            "gcs":gcs,
+            "cnt":cnt
+        }
+
         return render(request, self.template_name, self.context)
 
 

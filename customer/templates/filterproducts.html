@@ -1,19 +1,22 @@
 
 
-{%extends 'index.html'%}
+{%extends 'indexx.html'%}
 {%block body_block%}
-<h1>haiiiii</h1>
+
 <div class="container">
-    <div class="row">
-        {%for product in products%}
+
+        {%if laptops%}
+        <h1 style="color:red;font-weight:bold"><center>LAPTOPS</center></h1>
+
+        {%for laptop in laptops%}
 <!--<div class="col mb-5">-->
-        <div class="col-4">
+        <div class="col-md-3">
             <div class="card bg-light" style="width: 18rem;margin-top:50px;height:400px">
-                <a href="{%url 'productdetail' product.id%}"> <img src="{{product.image.url}}" class="card-img-top" alt="..." style="height:300px;width:250px"></a>
+                <a href="{%url 'productdetail' laptop.id%}"> <img src="{{laptop.image.url}}" class="card-img-top" alt="..." style="height:300px;width:250px"></a>
                 <div class="card-body">
                     <h5 class="card-title text-primary"><strong>
-                        <a href="" style="text-decoration:none"><center>{{product.product_name}}</center></a></strong></h5>
-                    <h5 style="color:red;font-weight:bold"><center>₹:{{product.price}}</center></a></strong></h5>
+                        <a href="{%url 'productdetail' laptop.id%}" style="text-decoration:none"><center>{{laptop.product_name}}</center></a></strong></h5>
+                    <h5 style="color:red;font-weight:bold"><center>₹:{{laptop.price}}</center></a></strong></h5>
 
 
 
@@ -23,6 +26,77 @@
 
 
         {%endfor%}
+
+
+
+
+         {%elif gpcs%}
+        <h1 style="color:red;font-weight:bold"><center>GAMING PCs</center></h1>
+        {%for gpc in gpcs%}
+<!--<div class="col mb-5">-->
+
+        <div class="col-md-3">
+            <div class="card bg-light" style="width: 18rem;margin-top:50px;height:300px">
+                <a href="{%url 'productdetail' gpc.id%}"> <img src="{{gpc.image.url}}" class="card-img-top" alt="..." style="height:200px;width:250px"></a>
+                <div class="card-body">
+                    <h5 class="card-title text-primary"><strong>
+                        <a href="{%url 'productdetail' gpc.id%}" style="text-decoration:none"><center>{{gpc.product_name}}</center></a></strong></h5>
+                    <h5 style="color:red;font-weight:bold"><center>₹:{{gpc.price}}</center></a></strong></h5>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+ {%endfor%}
+
+
+
+        {%elif cpus%}
+        <h1 style="color:red;font-weight:bold"><center>CPU CABINETS</center></h1>
+        {%for cpu in cpus%}
+<!--<div class="col mb-5">-->
+
+        <div class="col-md-3">
+            <div class="card bg-light" style="width: 18rem;margin-top:50px;height:400px">
+                <a href="{%url 'productdetail' cpu.id%}"> <img src="{{cpu.image.url}}" class="card-img-top" alt="..." style="height:300px;width:250px"></a>
+                <div class="card-body">
+                    <h5 class="card-title text-primary"><strong>
+                        <a href="{%url 'productdetail' cpu.id%}" style="text-decoration:none"><center>{{cpu.product_name}}</center></a></strong></h5>
+                    <h5 style="color:red;font-weight:bold"><center>₹:{{cpu.price}}</center></a></strong></h5>
+
+
+
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+
+
+      {%elif gcs%}
+        <h1 style="color:red;font-weight:bold"><center>GRAPHIC CARDS</center></h1>
+        {%for gc in gcs%}
+<!--<div class="col mb-5">-->
+
+        <div class="col-md-3">
+            <div class="card bg-light" style="width: 18rem;margin-top:50px;height:400px">
+                <a href="{%url 'productdetail' gc.id%}"> <img src="{{gc.image.url}}" class="card-img-top" alt="..." style="height:300px;width:250px"></a>
+                <div class="card-body">
+                    <h5 class="card-title text-primary"><strong>
+                        <a href="{%url 'productdetail' gc.id%}" style="text-decoration:none"><center>{{gc.product_name}}</center></a></strong></h5>
+                    <h5 style="color:red;font-weight:bold"><center>₹:{{gc.price}}</center></a></strong></h5>
+
+
+
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+        {%endif%}
+
     </div>
 </div>
 

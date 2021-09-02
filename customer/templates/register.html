@@ -1,19 +1,20 @@
-{%extends 'sample.html'%}
+{%extends 'blank.html'%}
 {%block body_block%}
 
 
 <div class="container">
 
     <div class="row" style="height:650px">
-        <div class="col-6" style="background-image:url(/static/images/t.jpg)"><br><br><br>
-            <h1 style="color:white;font-weight:bold;text-align:center">Looks like you're <br> new here!</h1>
-            <h4 style="color:white;font-weight:bold;text-align:center">Sign up with your details <br>
-                to get started <br>
-              </h4>
-        </div>
+        <!--<div class="col-6" style="background-image:url(/static/images/t.jpg)"><br><br><br>-->
+            <!--<h1 style="color:white;font-weight:bold;text-align:center">Looks like you're <br> new here!</h1>-->
+            <!--<h4 style="color:white;font-weight:bold;text-align:center">Sign up with your details <br>-->
+                <!--to get started <br>-->
+              <!--</h4>-->
+        <!--</div>-->
 
 
-        <div class="col-6" style="background-image:url(/static/images/teal.jpg);"><br>
+        <div class="col-6" style="background-image:url(/static/images/teal.jpg);width:750px;margin-left:200px;border-radius: 10%;"><br>
+            <img src="/static/img/logo.png" alt=""  style="margin-left:320px">
             {%if messages%}
             {%for message in messages%}
             <div style="color:red">
@@ -21,10 +22,10 @@
             </div>
             {%endfor%}
             {%endif%}
-            <form action="" method="POST">
+            <form action="" method="POST" style="margin-left:50px;width:550px">
                 {%csrf_token%}
-                <h2 style="color:blue">
-                    <center><strong>Create Account</strong></center>
+                <h2 style="color:blue;margin-left:150px">
+                    <center><strong>SignUp</strong></center>
                 </h2>
                 <table class="table-danger" >
                     <tr>

@@ -1,20 +1,20 @@
-<!DOCTYPE html>
-{%extends 'index.html'%}
+
+{%extends 'indexx.html'%}
 {%block body_block%}
 <div class="container">
-    <div class="row">
 
-        <div class="col-10">
 
+<h1 style="color:red;font-weight:bold"><center>YOUR CART</center></h1>
+        <div class="col-md-9">
             {%for cart_item in cart_items%}
-            <div class="card mb-2 bg-light" style="max-width:1000px;margin-top:10px;height:250px;">
+            <div class="card mb-2 bg-danger" style="max-width:1000px;margin-top:40px;height:250px;">
                 <div class="row g-0">
                     <div class="col-md-5">
-                        <img src="{{cart_item.product.image.url}}" alt="..." style="height:150px;width:100px">
+                        <img src="{{cart_item.product.image.url}}" alt="..." style="height:150px;width:100px;margin-top:25px;margin-left:20px">
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
-                            <h3 class="card-title" style="color:blue"><strong>
+                            <h3 class="card-title" style="color:blue;margin-top:20px"><strong>
                                 {{cart_item.product.product_name}}
                             </strong></h3>
                             <h6 class="card-text">{{cart_item.product.specs}}</h6><br>
@@ -27,7 +27,7 @@
                                     <td style="width:200px">
                                         <a href="{%url 'order' cart_item.id cart_item.product.id%}"
                                            class="btn btn-warning"
-                                           style="color:white;font-weight:bold">ORDER </a>
+                                           style="color:white;font-weight:bold;background-color:orange">ORDER </a>
                                     </td>
                                     <td style="width:200px">
                                         <a href="{%url 'removecart' cart_item.id%}" class="btn btn-danger"
@@ -42,19 +42,18 @@
                     </div>
                 </div>
             </div>
+
                 {%endfor%}
-            </div>
 
+        </div>
 
-    <div class="col-2">
-        <div class="card" style="width: 18rem;margin-top:10px">
+    <div class="col-md-3">
+        <div class="card bg-danger" style="width: 25rem;margin-top:40px;height">
             <ul class="list-group list-group-flush ">
-                <li class="list-group-item bg-info"><strong>PRICE DETAILS</strong></li>
-                <li class="list-group-item">No of Items: {%if cnt%}
+                <li class="list-group-item bg-info" style="background-color:orange"><strong>PRICE DETAILS</strong></li>
+                <li class="list-group-item bg-info">No of Items: {%if cnt%}
                     {{cnt}}{%endif%}
                 </li>
-
-
             </ul>
             <div class="card-footer">
                 Total Amount: ₹ {{total}}
@@ -63,7 +62,50 @@
     </div>
 </div>
 
+<br><br>
+<h4>Recommendations for all products:</h4>
+<div class=" products-tabs " >
+
+								<!-- tab -->
+								<div id="tab1" class="tab-pane active" >
+									<div class="products-slick" data-nav="#slick-nav-1" >
+										<!-- product -->
+{%for product in products%}
+										<div class="product" >
+											<div class="product-img">
+												<img src="{{product.image.url}}" style="height:150px" alt="">
+
+
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{product.category}}</p>
+												<h3 class="product-name"><a href="{%url 'productdetail' product.id%}">{{product.product_name}}</a></h3>
+												<h4 class="product-price">₹:{{product.price}} </h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="product-btns">
+
+													<a href="{%url 'productdetail' product.id%}" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp"></span></a>
+												</div>
+
+											</div>
+<div class="add-to-cart">
+												<a href="{%url 'productdetail' product.id%}"class="add-to-cart-btn btn-large" style="height:150px">View</a>
+											</div>
+										</div>
+                                        {%endfor%}
+                                    </div>
+                                    </div>
+
+
+<div id="slick-nav-1" class="products-slick-nav"></div>
 </div>
+
 
 {% endblock %}
 

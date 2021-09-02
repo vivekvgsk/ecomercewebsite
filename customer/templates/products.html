@@ -1,29 +1,82 @@
 
 
-{%extends 'sample.html'%}
+
+{%extends 'blank.html'%}
 {%block body_block%}
-<div class="container">
-    <div class="row">
-        {%for product in products%}
-<!--<div class="col mb-5">-->
-        <div class="col-4">
-            <div class="card bg-light" style="width: 18rem;margin-top:50px;height:400px">
-                <a href="{%url 'productdetail' product.id%}"> <img src="{{product.image.url}}" class="card-img-top" alt="..." style="height:300px;width:250px"></a>
-                <div class="card-body">
-                    <h5 class="card-title text-primary"><strong>
-                        <a href="" style="text-decoration:none"><center>{{product.product_name}}</center></a></strong></h5>
-                    <h5 style="color:red;font-weight:bold"><center>₹:{{product.price}}</center></a></strong></h5>
 
-
-
-                </div>
-            </div>
-        </div>
-
-
-        {%endfor%}
-    </div>
+<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title" style="color:green">New Products</h3>
+							<div class="section-nav">
+								<ul class="section-tab-nav tab-nav">
+									<li><a href="{%url 'listproducts'%}" data-toggle="tab" >Laptops</a></li>
+									<li><a data-toggle="tab" href="{%url 'gaminspcs'%}">Gaming PC</a></li>
+									<li><a data-toggle="tab" href="{%url 'cpucabinets'%}">CPU</a></li>
+									<li><a data-toggle="tab" href="{%url 'graphiccards'%}">Graphic Cards</a></li>
+								</ul>
+							</div>
+						</div>
 </div>
+					<!-- /section title -->
+
+					<!-- Products tab & slick -->
+
+
+
+
+
+.
+							<div class=" products-tabs " >
+
+								<!-- tab -->
+								<div id="tab1" class="tab-pane active" >
+									<div class="products-slick" data-nav="#slick-nav-1" >
+										<!-- product -->
+{%for product in products%}
+										<div class="product" >
+											<div class="product-img">
+												<img src="{{product.image.url}}" style="height:150px" alt="">
+
+
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{product.category}}</p>
+												<h3 class="product-name"><a href="{%url 'productdetail' product.id%}">{{product.product_name}}</a></h3>
+												<h4 class="product-price">₹:{{product.price}} </h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="product-btns">
+
+													<a href="{%url 'productdetail' product.id%}" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp"></span></a>
+												</div>
+
+											</div>
+<div class="add-to-cart">
+												<button class="add-to-cart-btn btn-large"><i class="fa fa-eye"></i>View</button>
+											</div>
+										</div>
+
+                                        {%endfor%}
+                                    </div>
+                                    </div>
+								<div id="slick-nav-1" class="products-slick-nav"></div>
+
+
+
+
+</div></div>
 
 {% endblock %}
+
+
+
+
+
+
+
 
