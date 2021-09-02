@@ -242,15 +242,19 @@ class CancelledOrders(TemplateView):
         return render(request, self.template_name, self.context)
 
 class ProductSearchView(TemplateView):
-    def get(self,request,*args,**kwargs):
+    def post(self,request,*args,**kwargs):
+        # if 'item' in request.GET:
+        #     item = request.GET.get('item')
 
-        search=request.GET.get('search')
+
+        search=request.POST.get('search',None)
+        print('hai')
         print(search)
+        if search:
 
-        product=Product.objects.filter((Q(product_name__icontains=search) | Q(price__icontains=search)))
-        product_filter=ProductFilter(request.GET,queryset=product)
-        return render(request,"searchresult.html",{"filter":product_filter})
-
+            products=Product.objects.filter((Q(product_name__icontains=search) | Q(price__icontains=search)))
+            # product_filter=ProductFilter(request.GET,queryset=product)
+            return render(request,"searchresult.html",{"products":products})
 
 
 class LaptopFilterView(TemplateView):
